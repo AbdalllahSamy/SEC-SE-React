@@ -100,7 +100,7 @@ const Sidebar = ({ sidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-            {secMenus.map((item, index) => (
+            {menus.map((item, index) => (
               <MenuItem
                 key={index}
                 item={item}

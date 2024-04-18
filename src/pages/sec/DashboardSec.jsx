@@ -11,6 +11,7 @@ import StatisticData from '../../components/common/StatisticData';
 const DashboardPage = () => {
   return (
     <Grid container spacing={3}>
+      <div className='hamada'>hamada</div>
       <Grid item xs={12}>
         <SummaryGrid />
       </Grid>
