@@ -7,11 +7,12 @@ import UserBookingCard from '../../components/common/UserBookingCard';
 import TotalIncome from '../../components/common/TotalIncome';
 import BookedData from '../../components/common/BookedData';
 import StatisticData from '../../components/common/StatisticData';
-import { CiChat1 } from "react-icons/ci";
+import Navbar from '../../components/layout/Navbar';
+
 const DashboardPage = () => {
   return (
     <Grid container spacing={3}>
-      <div className='hamada'><CiChat1 /></div>
+      <Navbar />
       <Grid item xs={12}>
         <SummaryGrid />
       </Grid>
