@@ -7,20 +7,21 @@ import Animate from "./Animate";
 
 const menus = [
   {
-    title: "Teacher's",
+    title: "Index",
     icon: <MailOutlinedIcon />,
     state: "inbox"
   },
   {
-    title: "Overview",
+    title: "Teachers",
     icon: <DashboardCustomizeOutlinedIcon />,
     state: "overview"
   },
   {
-    title: "Notification",
+    title: "Secrateries",
     icon: <NotificationsOutlinedIcon />,
     state: "notification"
-  }
+  },
+  
 ];
 const secMenus = [
   {
@@ -100,7 +101,7 @@ const Sidebar = ({ sidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-            {secMenus.map((item, index) => (
+            {menus.map((item, index) => (
               <MenuItem
                 key={index}
                 item={item}
