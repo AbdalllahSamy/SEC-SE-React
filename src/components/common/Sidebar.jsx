@@ -1,12 +1,6 @@
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
-import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
-import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
-import SportsMotorsportsOutlinedIcon from '@mui/icons-material/SportsMotorsportsOutlined';
-import SwapHorizOutlinedIcon from '@mui/icons-material/SwapHorizOutlined';
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Typography, colors } from '@mui/material';
 import { images } from "../../assets";
 import Animate from "./Animate";
@@ -28,42 +22,15 @@ const menus = [
     state: "notification"
   }
 ];
-
-const serviceMenus = [
+const secMenus = [
   {
-    title: "Mortage",
-    icon: <OtherHousesOutlinedIcon />,
-    state: "mortage"
+    title: "Home",
+    icon: <MailOutlinedIcon />,
+    state: "inbox"
   },
-  {
-    title: "Car loans",
-    icon: <DirectionsCarFilledOutlinedIcon />,
-    state: "carloan"
-  },
-  {
-    title: "Insurance",
-    icon: <SportsMotorsportsOutlinedIcon />,
-    state: "insurance"
-  }
 ];
 
-const investmentMenus = [
-  {
-    title: "Stocks reade",
-    icon: <SwapHorizOutlinedIcon />,
-    state: "stocktrade"
-  },
-  {
-    title: "Finance advice",
-    icon: <ChatBubbleOutlineOutlinedIcon />,
-    state: "financeadvice"
-  },
-  {
-    title: "Savings accounts",
-    icon: <SavingsOutlinedIcon />,
-    state: "savingaccount"
-  }
-];
+
 
 const Sidebar = ({ sidebarWidth }) => {
   const activeState = "overview";
@@ -133,7 +100,7 @@ const Sidebar = ({ sidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-            {menus.map((item, index) => (
+            {secMenus.map((item, index) => (
               <MenuItem
                 key={index}
                 item={item}
@@ -141,41 +108,6 @@ const Sidebar = ({ sidebarWidth }) => {
               />
             ))}
           </List>
-          {/* menu group 1 */}
-
-          {/* menu group 2 */}
-          <List>
-            <ListItem>
-              <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
-                Services
-              </Typography>
-            </ListItem>
-            {serviceMenus.map((item, index) => (
-              <MenuItem
-                key={index}
-                item={item}
-                isActive={item.state === activeState}
-              />
-            ))}
-          </List>
-          {/* menu group 2 */}
-
-          {/* menu group 3 */}
-          <List>
-            <ListItem>
-              <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
-                Investments
-              </Typography>
-            </ListItem>
-            {investmentMenus.map((item, index) => (
-              <MenuItem
-                key={index}
-                item={item}
-                isActive={item.state === activeState}
-              />
-            ))}
-          </List>
-          {/* menu group 3 */}
         </Paper>
       </Animate>
     </Box>
