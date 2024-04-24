@@ -52,6 +52,22 @@ export const router = createBrowserRouter([
             ]
           }
         ]
+      },
+      {
+        path: "dashboard-teacher",
+        element: <RequireAuth />, // Protect this route
+        children: [
+          {
+            // index: true,
+            element: <MainLayout />,
+            children: [
+              {
+                index: true,
+                element: <DashboardSec />
+              }
+            ]
+          }
+        ]
       }
     ]
   }
