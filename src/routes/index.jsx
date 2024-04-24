@@ -4,7 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import MainLayout from "../components/layout/MainLayout";
 import DashboardSec from "../pages/sec/DashboardSec";
 import DashboardPage from "../pages/admin/DashboardPage";
-
+import TeachersPage from "../pages/admin/teacher/TeachersPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +21,11 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <DashboardPage />
-          } 
+          },
+          {
+            path: "teachers", // New route path
+            element: <TeachersPage /> // Render TeachersPage component
+          }
         ]
       },
       {
