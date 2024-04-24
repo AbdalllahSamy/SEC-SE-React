@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes as ReactRoutes, Outlet } from 'react-router-dom';
 import AppLayout from "../components/layout/AppLayout";
 import LoginPage from "../pages/LoginPage";
 import MainLayout from "../components/layout/MainLayout";
 import DashboardSec from "../pages/sec/DashboardSec";
 import DashboardPage from "../pages/admin/DashboardPage";
 import TeachersPage from "../pages/admin/teacher/TeachersPage";
+import RequireAuth from "./../components/auth/RequireAuth"
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -16,26 +19,38 @@ export const router = createBrowserRouter([
       },
       {
         path: "dashboard-admin",
-        element: <MainLayout />,
+        element: <RequireAuth />, // Protect this route
         children: [
           {
-            index: true,
-            element: <DashboardPage />
-          },
-          {
-            path: "teachers", // New route path
-            element: <TeachersPage /> // Render TeachersPage component
-          }
+            // index: true,
+            element: <MainLayout />,
+            children: [
+              {
+                index: true,
+                element: <DashboardPage />
+              },
+              {
+                path: "teachers",
+                element: <TeachersPage />
+              }
+            ]
+          }
         ]
       },
       {
         path: "dashboard-sec",
-        element: <MainLayout />,
+        element: <RequireAuth />, // Protect this route
         children: [
           {
-            index: true,
-            element: <DashboardSec />
-          } 
+            // index: true,
+            element: <MainLayout />,
+            children: [
+              {
+                index: true,
+                element: <DashboardSec />
+              }
+            ]
+          }
         ]
       }
     ]

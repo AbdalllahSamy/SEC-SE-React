@@ -2,34 +2,44 @@ import { Box, Button, Checkbox, CircularProgress, FormControlLabel, FormGroup, S
 import React, { useState } from "react";
 import { images } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Animate from "../components/common/Animate";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [onRequest, setOnRequest] = useState(false);
-  const [loginProgress, setLoginProgress] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const onSignin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setOnRequest(true);
+    console.log(email);
+    console.log(password);
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        username: email,
+        password: password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-    const interval = setInterval(() => {
-      setLoginProgress(prev => prev + 100 / 40);
-    }, 50);
+      localStorage.setItem("auth", JSON.stringify(response.data.data));
 
-    setTimeout(() => {
-      clearInterval(interval);
-    }, 2000);
+      if (response.data.data.role === "ADMIN") {
+        navigate("/dashboard-admin");
+      } else if (response.data.data.role === "TEACHER") {
+        navigate("/dashboard-teacher");
+      } else if (response.data.data.role === "SEC") {
+        navigate("/dashboard-sec");
+      } else if (response.data.data.role === "USER") {
+        navigate("/dashboard-user");
+      }
 
-    setTimeout(() => {
-      setIsLoggedIn(true);
-    }, 2100);
-
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 3300);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,7 +66,7 @@ const LoginPage = () => {
         position: "absolute",
         left: 0,
         height: "100%",
-        width: isLoggedIn ? "100%" : { xl: "30%", lg: "40%", md: "50%", xs: "100%" },
+        width: { xl: "30%", lg: "40%", md: "50%", xs: "100%" },
         transition: "all 1s ease-in-out",
         bgcolor: colors.common.white
       }}>
@@ -64,7 +74,7 @@ const LoginPage = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          opacity: isLoggedIn ? 0 : 1,
+          opacity: 1,
           transition: "all 0.3s ease-in-out",
           height: "100%",
           "::-webkit-scrollbar": { display: "none" }
@@ -90,10 +100,10 @@ const LoginPage = () => {
             "::-webkit-scrollbar": { display: "none" }
           }}>
             <Animate type="fade" sx={{ maxWidth: 400, width: "100%" }}>
-              <Box component="form" maxWidth={400} width="100%" onSubmit={onSignin}>
+              <Box component="form" maxWidth={400} width="100%" onSubmit={handleSubmit}>
                 <Stack spacing={3}>
-                  <TextField label="username" fullWidth />
-                  <TextField label="password" type="password" fullWidth />
+                  <TextField label="username" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <TextField label="password" type="password" fullWidth value={password} onChange={(e) => setPassword(e.target.value)} />
                   <Button type="submit" size="large" variant="contained" color="success">
                     sign in
                   </Button>
@@ -130,46 +140,7 @@ const LoginPage = () => {
           </Box>
           {/* footer */}
 
-          {/* loading box */}
-          {onRequest && (
-            <Stack
-              alignItems="center"
-              justifyContent="center"
-              sx={{
-                height: "100%",
-                width: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                bgcolor: colors.common.white,
-                zIndex: 1000
-              }}
-            >
-              <Box position="relative">
-                <CircularProgress
-                  variant="determinate"
-                  sx={{ color: colors.grey[200] }}
-                  size={100}
-                  value={100}
-                />
-                <CircularProgress
-                  variant="determinate"
-                  disableShrink
-                  value={loginProgress}
-                  size={100}
-                  sx={{
-                    [`& .${circularProgressClasses.circle}`]: {
-                      strokeLinecap: "round"
-                    },
-                    position: "absolute",
-                    left: 0,
-                    color: colors.green[600]
-                  }}
-                />
-              </Box>
-            </Stack>
-          )}
-          {/* loading box */}
+
         </Box>
       </Box>
       {/* Login form */}
