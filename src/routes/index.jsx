@@ -7,7 +7,7 @@ import DashboardSec from "../pages/sec/DashboardSec";
 import DashboardPage from "../pages/admin/DashboardPage";
 import TeachersPage from "../pages/admin/teacher/TeachersPage";
 import RequireAuth from "./../components/auth/RequireAuth"
-
+import DashboardTeacher from "../pages/teacher/DashboardTeacher";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <DashboardSec />
+                element: <DashboardTeacher />
               }
             ]
           }

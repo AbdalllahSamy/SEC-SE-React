@@ -1,7 +1,9 @@
 import React from 'react'
-
+import Table from '../../../components/layout/Table'
 export default function TeachersPage() {
   return (
-    <div>TeachersPage</div>
+    <h1>
+      Teacher
+    </h1>
   )
 }

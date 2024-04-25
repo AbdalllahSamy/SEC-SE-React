@@ -16,7 +16,7 @@ const DashboardPage = () => {
     <>
     <Navbar />
       <div>
-        <h1>Hello,</h1>
+        <h1 className='mt-5 '>Hello,</h1>
       </div>
     </>
       

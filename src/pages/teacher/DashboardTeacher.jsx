@@ -1,15 +1,13 @@
-import { Grid } from '@mui/material';
-import React from 'react';
-import { useCheckValidation } from '../../hooks/useCheckValidation';
-import Navbar from '../../components/layout/Navbar';
-import Table from '../../components/layout/Table';
-const DashboardPage = () => {
-  useCheckValidation("ADMIN");
+import React from 'react'
+import Navbar from '../../components/layout/Navbar'
+import Table from '../../components/layout/Table'
+function DashboardTeacher() {
   return (
     <>
-      <Navbar/>  
-      <Table>
-      <thead>
+        <Navbar />
+        <h1 className='mt-4 ms-3'>Hello,</h1>
+        <Table>
+        <thead>
         <tr className="bg-light">
           <th scope="col" width="5%"><input className="form-check-input" type="checkbox"/></th>
           <th scope="col" width="5%">#</th>
@@ -128,10 +126,9 @@ const DashboardPage = () => {
             <td className="text-end"><span className="fw-bolder">$0.99</span> <i className="fa fa-ellipsis-h  ms-2"></i></td>
             </tr>
         </tbody>
-      </Table>
+        </Table>
     </>
-  
-  );
-};
+  )
+}
 
-export default DashboardPage;
+export default DashboardTeacher 
