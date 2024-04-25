@@ -8,8 +8,10 @@ import TotalIncome from '../../components/common/TotalIncome';
 import BookedData from '../../components/common/BookedData';
 import StatisticData from '../../components/common/StatisticData';
 import Navbar from '../../components/layout/Navbar';
+import { useCheckValidation } from '../../hooks/useCheckValidation';
 
 const DashboardPage = () => {
+  useCheckValidation("SEC");
   return (
     <>
     <Navbar />

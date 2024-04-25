@@ -1,5 +1,5 @@
 import { Box, Button, Checkbox, CircularProgress, FormControlLabel, FormGroup, Stack, TextField, Typography, circularProgressClasses, colors } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { images } from "../assets";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,13 +10,28 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    if (auth) {
+      if (auth.role === "ADMIN") {
+        navigate("/dashboard-admin");
+      } else if (auth.role === "TEACHER") {
+        navigate("/dashboard-teacher");
+      } else if (auth.role === "SEC") {
+        navigate("/dashboard-sec");
+      } else if (auth.role === "USER") {
+        navigate("/dashboard-user");
+      }
+    }
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email);
     console.log(password);
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post('http://localhost:3001/login', {
         username: email,
         password: password
       }, {

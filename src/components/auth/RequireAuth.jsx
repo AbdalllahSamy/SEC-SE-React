@@ -9,23 +9,23 @@ const RequireAuth = () => {
     const auth = JSON.parse(localStorage.getItem('auth'));
     const [isMounted, setIsMounted] = useState(false);
 
-    // useEffect(() => {
-    //     setIsMounted(true);
-    // }, []);
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
-    // useEffect(() => {
-    //     if(!auth && isMounted) {
-    //         navigate("/");
-    //     }
-    // }, [auth, navigate, isMounted]);
+    useEffect(() => {
+        if(!auth && isMounted) {
+            navigate("/");
+        }
+    }, [auth, navigate, isMounted]);
 
-    // if (auth) {
+    if (auth) {
         return (
             <>
                 <Outlet />
             </>
         )
-    // }
+    }
 }
 
 export default RequireAuth;
