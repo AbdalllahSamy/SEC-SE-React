@@ -6,41 +6,6 @@ import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText
 import { images } from "../../assets";
 import Animate from "./Animate";
 
-// const menus = [
-//   {
-//     title: "Home",
-//     icon: <MailOutlinedIcon />,
-//     state: "inbox",
-//     link: "/dashboard-admin" // Adjusted path
-//   },
-//   {
-//     title: "Teachers",
-//     icon: <DashboardCustomizeOutlinedIcon />,
-//     state: "teac",
-//     link: "/dashboard-admin/teachers" // Adjusted path
-//   },
-//   {
-//     title: "Sec",
-//     icon: <DashboardCustomizeOutlinedIcon />,
-//     state: "sec",
-//     link: "/dashboard-admin/secs" // Adjusted path
-//   }
-// ];
-// const menusSec = [
-//   {
-//     title: "HomeSec",
-//     icon: <MailOutlinedIcon />,
-//     state: "inbox",
-//     link: "/dashboard-sec" // Adjusted path
-//   },
-//   {
-//     title: "Teachers",
-//     icon: <DashboardCustomizeOutlinedIcon />,
-//     state: "teac",
-//     link: "/dashboard-sec/teachers" // Adjusted path
-//   },
- 
-// ];
 
 const Sidebar = ({ sidebarWidth }) => {
   const [activeState, setActiveState] = useState("inbox");
