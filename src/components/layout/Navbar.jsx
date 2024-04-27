@@ -19,7 +19,7 @@ function Navbar() {
 
 
         // Make a POST request to the logout endpoint
-        axios.delete('/api/token-logout', {
+        axios.post('/logout', {
             headers: {
                 'Authorization': `Bearer ${auth.token}`
             },

@@ -28,8 +28,6 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
-    console.log(password);
     try {
       const response = await axios.post('/login', {
         username: email,
@@ -39,7 +37,6 @@ const LoginPage = () => {
           'Content-Type': 'application/json'
         }
       });
-      console.log(response);
   
       // Check if the response contains a valid JWT token
       if (response.data.data && response.data.data.token) {
@@ -60,11 +57,9 @@ const LoginPage = () => {
             navigate("/dashboard-user");
             break;
           default:
-            // Handle unknown roles
             break;
         }
       } else {
-        // Handle invalid response from server
         console.error("Invalid response from server");
       }
     } catch (error) {
