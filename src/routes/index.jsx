@@ -8,6 +8,7 @@ import DashboardPage from "../pages/admin/DashboardPage";
 import TeachersPage from "../pages/admin/teacher/TeachersPage";
 import RequireAuth from "./../components/auth/RequireAuth"
 import DashboardTeacher from "../pages/teacher/DashboardTeacher";
+import SecsPage from "../pages/admin/secs/SecsPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
               {
                 path: "teachers",
                 element: <TeachersPage />
+              },
+              {
+                path: "secs",
+                element: <SecsPage />
               }
             ]
           }

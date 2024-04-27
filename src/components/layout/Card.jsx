@@ -2,7 +2,7 @@ import React from 'react';
 import Buttonn from './Buttonn';
 import FormButton from './FormButton';
 import FormDelete from './FormDelete';
-function CardTeacher(props) {
+function Card(props) {
   return (
     <>
    
@@ -22,4 +22,4 @@ function CardTeacher(props) {
   );
 }
 
-export default CardTeacher;
+export default Card;

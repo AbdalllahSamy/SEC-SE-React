@@ -8,6 +8,7 @@ const DashboardPage = () => {
   return (
     <>
       <Navbar/>  
+      <h1>Hello Admin</h1>
       <Table>
       <thead>
         <tr className="bg-light">
