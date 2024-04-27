@@ -16,30 +16,23 @@ function Navbar() {
         // Get the token from localStorage or wherever it's stored
         const auth = JSON.parse(localStorage.getItem('auth'));
         console.log(auth.token);
-    
-        // Set up Axios request configuration
-        const config = {
-          headers: {
-            'Authorization': `Bearer ${auth.token}`
-          }
-        };
-    
+
+
         // Make a POST request to the logout endpoint
-        axios.post('http://localhost:3001/logout', null, {
-    headers: {
-        'Authorization': `Bearer ${auth.token}`
-    }
-})
-.then(response => {
-    console.log('Logout successful');
-    localStorage.removeItem('auth');
-    console.log(1);
-    navigate("/");
-})
-.catch(error => {
-    console.error('Logout failed:', error);
-    console.log(error);
-});
+        axios.delete('/api/token-logout', {
+            headers: {
+                'Authorization': `Bearer ${auth.token}`
+            },
+            withCredentials: true
+        })
+            .then(response => {
+                localStorage.removeItem('auth');
+                navigate("/");
+            })
+            .catch(error => {
+                console.error('Logout failed:', error);
+                console.log(error);
+            });
 
     };
 
