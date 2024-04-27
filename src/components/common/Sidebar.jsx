@@ -1,21 +1,30 @@
+import React, { useState } from 'react';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Typography, colors } from '@mui/material';
 import { images } from "../../assets";
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Animate from "./Animate";
 
 const menus = [
   {
     title: "Home",
     icon: <MailOutlinedIcon />,
-    state: "inbox"
+    state: "inbox",
+    link:"dashboard-admin"
   },
   {
     title: "Teachers",
     icon: <DashboardCustomizeOutlinedIcon />,
-    state: "overview"
+    state: "teac",
+    link:"dashboard-admin/teachers"
   },
-  
+  {
+    title: "Sec",
+    icon: <DashboardCustomizeOutlinedIcon />,
+    state: "sec",
+    link:"dashboard-admin/secs"
+  }
   
 ];
 const secMenus = [
@@ -29,7 +38,8 @@ const secMenus = [
 
 
 const Sidebar = ({ sidebarWidth }) => {
-  const activeState = "overview";
+  const [activeState, setActiveState] = useState(null);
+  // const activeState = "overview";
 
   // const container = window !== undefined ? () => window.document.body : undefined;
 
@@ -96,13 +106,16 @@ const Sidebar = ({ sidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-            {menus.map((item, index) => (
-              <MenuItem
-                key={index}
-                item={item}
-                isActive={item.state === activeState}
-              />
-            ))}
+          {menus.map((item, index) => (
+        <a
+          href={item.link}
+          key={index}
+          className={`sidebar-item ${item.state === activeState ? 'active' : ''}`}
+          onClick={() => setActiveState(item.state === activeState ? null : item.state)}
+        >
+          {item.title}
+        </a>
+      ))}
           </List>
         </Paper>
       </Animate>
