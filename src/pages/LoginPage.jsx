@@ -31,7 +31,7 @@ const LoginPage = () => {
     console.log(email);
     console.log(password);
     try {
-      const response = await axios.post('http://localhost:3001/login', {
+      const response = await axios.post('/login', {
         username: email,
         password: password
       }, {
@@ -39,23 +39,40 @@ const LoginPage = () => {
           'Content-Type': 'application/json'
         }
       });
-
-      localStorage.setItem("auth", JSON.stringify(response.data.data));
-
-      if (response.data.data.role === "ADMIN") {
-        navigate("/dashboard-admin");
-      } else if (response.data.data.role === "TEACHER") {
-        navigate("/dashboard-teacher");
-      } else if (response.data.data.role === "SEC") {
-        navigate("/dashboard-sec");
-      } else if (response.data.data.role === "USER") {
-        navigate("/dashboard-user");
+      console.log(response);
+  
+      // Check if the response contains a valid JWT token
+      if (response.data.data && response.data.data.token) {
+        localStorage.setItem("auth", JSON.stringify(response.data.data));
+        
+        // Navigate based on user role
+        switch (response.data.data.role) {
+          case "ADMIN":
+            navigate("/dashboard-admin");
+            break;
+          case "TEACHER":
+            navigate("/dashboard-teacher");
+            break;
+          case "SEC":
+            navigate("/dashboard-sec");
+            break;
+          case "USER":
+            navigate("/dashboard-user");
+            break;
+          default:
+            // Handle unknown roles
+            break;
+        }
+      } else {
+        // Handle invalid response from server
+        console.error("Invalid response from server");
       }
-
     } catch (error) {
-      console.log(error);
+      // Handle network errors or server errors
+      console.error("Error:", error);
     }
   };
+  
 
   return (
     <Box
