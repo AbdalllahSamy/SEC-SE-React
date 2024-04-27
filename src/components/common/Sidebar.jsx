@@ -1,76 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Typography, colors } from '@mui/material';
 import { images } from "../../assets";
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Animate from "./Animate";
 
-const menus = [
-  {
-    title: "Home",
-    icon: <MailOutlinedIcon />,
-    state: "inbox",
-    link:"dashboard-admin"
-  },
-  {
-    title: "Teachers",
-    icon: <DashboardCustomizeOutlinedIcon />,
-    state: "teac",
-    link:"dashboard-admin/teachers"
-  },
-  {
-    title: "Sec",
-    icon: <DashboardCustomizeOutlinedIcon />,
-    state: "sec",
-    link:"dashboard-admin/secs"
-  }
-  
-];
-const secMenus = [
-  {
-    title: "Home",
-    icon: <MailOutlinedIcon />,
-    state: "inbox"
-  },
-];
-
-
+// const menus = [
+//   {
+//     title: "Home",
+//     icon: <MailOutlinedIcon />,
+//     state: "inbox",
+//     link: "/dashboard-admin" // Adjusted path
+//   },
+//   {
+//     title: "Teachers",
+//     icon: <DashboardCustomizeOutlinedIcon />,
+//     state: "teac",
+//     link: "/dashboard-admin/teachers" // Adjusted path
+//   },
+//   {
+//     title: "Sec",
+//     icon: <DashboardCustomizeOutlinedIcon />,
+//     state: "sec",
+//     link: "/dashboard-admin/secs" // Adjusted path
+//   }
+// ];
+// const menusSec = [
+//   {
+//     title: "HomeSec",
+//     icon: <MailOutlinedIcon />,
+//     state: "inbox",
+//     link: "/dashboard-sec" // Adjusted path
+//   },
+//   {
+//     title: "Teachers",
+//     icon: <DashboardCustomizeOutlinedIcon />,
+//     state: "teac",
+//     link: "/dashboard-sec/teachers" // Adjusted path
+//   },
+ 
+// ];
 
 const Sidebar = ({ sidebarWidth }) => {
-  const [activeState, setActiveState] = useState(null);
-  // const activeState = "overview";
+  const [activeState, setActiveState] = useState("inbox");
+  const [menus, setMenus] = useState([]);
+  useEffect(() => {
 
-  // const container = window !== undefined ? () => window.document.body : undefined;
+    // Retrieve user role from local storage
+    const role=JSON.parse(localStorage.getItem('auth')).role;
 
-  const MenuItem = (props) => {
-    return (
-      <ListItem key={props.index} disableGutters disablePadding sx={{ py: 0.5 }}>
-        <ListItemButton sx={{
-          borderRadius: "10px",
-          bgcolor: props.isActive ? colors.green[600] : "",
-          color: props.isActive ? colors.common.white : "",
-          "&:hover": {
-            bgcolor: props.isActive ? colors.green[600] : "",
-            color: props.isActive ? colors.common.white : "",
-          }
-        }}>
-          <ListItemIcon sx={{
-            minWidth: "40px",
-            color: props.isActive ? colors.common.white : ""
-          }}>
-            {props.item.icon}
-          </ListItemIcon>
-          <ListItemText primary={
-            <Typography fontWeight={600}>
-              {props.item.title}
-            </Typography>
-          } />
-        </ListItemButton>
-      </ListItem>
-    );
-  };
-
+    // Based on the user's role, set the appropriate menu
+    if (role === 'ADMIN') {
+      setMenus([
+        {
+          title: "Home",
+          icon: <MailOutlinedIcon />,
+          state: "inbox",
+          link: "/dashboard-admin",
+        
+        },
+        {
+          title: "Teachers",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "teac",
+          link: "/dashboard-admin/teachers"
+        },
+        {
+          title: "Sec",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "sec",
+          link: "/dashboard-admin/secs"
+        }
+      ]);
+    } else if (role === 'SEC') {
+      setMenus([
+        {
+          title: "HomeSec",
+          icon: <MailOutlinedIcon />,
+          state: "inbox",
+          link: "/dashboard-sec"
+        },
+        {
+          title: "Teachers",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "teac",
+          link: "/dashboard-sec/teachers"
+        }
+      ]);
+    }
+  }, []);
   const drawer = (
     <Box
       padding={3}
@@ -106,16 +125,17 @@ const Sidebar = ({ sidebarWidth }) => {
         >
           {/* menu group 1 */}
           <List>
-          {menus.map((item, index) => (
-        <a
-          href={item.link}
-          key={index}
-          className={`sidebar-item ${item.state === activeState ? 'active' : ''}`}
-          onClick={() => setActiveState(item.state === activeState ? null : item.state)}
-        >
-          {item.title}
-        </a>
-      ))}
+            {menus.map((item, index) => (
+              <ListItem
+                key={index}
+                component={Link} // Use Link component from react-router-dom
+                to={item.link}
+                className={`sidebar-item ${item.state === activeState ? 'active' : ''}`}
+                onClick={() => setActiveState(item.state === activeState ? null : item.state)}
+              >
+                <ListItemText primary={item.title} />
+              </ListItem>
+            ))}
           </List>
         </Paper>
       </Animate>
