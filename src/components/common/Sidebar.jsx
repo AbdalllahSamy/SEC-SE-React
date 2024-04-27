@@ -1,13 +1,12 @@
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Typography, colors } from '@mui/material';
 import { images } from "../../assets";
 import Animate from "./Animate";
 
 const menus = [
   {
-    title: "Index",
+    title: "Home",
     icon: <MailOutlinedIcon />,
     state: "inbox"
   },
@@ -16,11 +15,7 @@ const menus = [
     icon: <DashboardCustomizeOutlinedIcon />,
     state: "overview"
   },
-  {
-    title: "Secrateries",
-    icon: <NotificationsOutlinedIcon />,
-    state: "notification"
-  },
+  
   
 ];
 const secMenus = [
