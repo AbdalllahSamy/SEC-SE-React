@@ -36,6 +36,18 @@ const Sidebar = ({ sidebarWidth }) => {
           icon: <DashboardCustomizeOutlinedIcon />,
           state: "sec",
           link: "/dashboard-admin/secs"
+        },
+        {
+          title: "Events",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "eve",
+          link: "/dashboard-admin/events"
+        },
+        {
+          title: "Parents",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "par",
+          link: "/dashboard-admin/parents"
         }
       ]);
     } else if (role === 'SEC') {
@@ -64,6 +76,56 @@ const Sidebar = ({ sidebarWidth }) => {
           state: "par",
           link: "/dashboard-sec/parents"
         }
+      ]);
+    }
+    else if (role === 'TEACHER') {
+      setMenus([
+        {
+          title: "Home",
+          icon: <MailOutlinedIcon />,
+          state: "inbox",
+          link: "/dashboard-teacher"
+        },
+        {
+          title: "Students",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "teac",
+          link: "/dashboard-teacher/students"
+        },
+        {
+          title: "Events",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "eve",
+          link: "/dashboard-teacher/events"
+        },
+        {
+          title: "Class",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "par",
+          link: "/dashboard-teacher/class"
+        }
+      ]);
+    }
+    else if (role === 'USER') {
+      setMenus([
+        {
+          title: "Home",
+          icon: <MailOutlinedIcon />,
+          state: "inbox",
+          link: "/dashboard-user"
+        },
+        {
+          title: "My child",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "teac",
+          link: "/dashboard-user/profile"
+        },
+        {
+          title: "Events",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "eve",
+          link: "/dashboard-user/events"
+        },
       ]);
     }
   }, []);

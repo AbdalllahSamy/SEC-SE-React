@@ -3,7 +3,7 @@ import React from 'react';
 function FormDelete(props) {
   return (
     <>
-      <button type="button" className="my-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+      <button type="button" className=" btn info" data-bs-toggle="modal" data-bs-target="#deleteModal">
         {props.title}
       </button>
 

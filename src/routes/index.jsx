@@ -13,6 +13,11 @@ import Profile from "../pages/Profile";
 import Event from "../pages/sec/events/Event";
 import Parent from "../pages/sec/parents/Parent";
 import Teacher from "../pages/sec/teachers/Teacher";
+import Students from "../pages/teacher/students/Students";
+import Class from "../pages/teacher/class/Class";
+import DashboardUser from "../pages/user/DashboardUser";
+import UserEvent from "../pages/user/userevent/UserEvent";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +32,6 @@ export const router = createBrowserRouter([
         element: <RequireAuth />, // Protect this route
         children: [
           {
-            // index: true,
             element: <MainLayout />,
             children: [
               {
@@ -43,8 +47,16 @@ export const router = createBrowserRouter([
                 element: <SecsPage />
               },
               {
-                path:"profile",
+                path: "profile",
                 element: <Profile />
+              },
+              {
+                path: "events",
+                element: <Event />
+              },
+              {
+                path: "parents",
+                element: <Parent />
               }
             ]
           }
@@ -55,7 +67,6 @@ export const router = createBrowserRouter([
         element: <RequireAuth />, // Protect this route
         children: [
           {
-            // index: true,
             element: <MainLayout />,
             children: [
               {
@@ -63,19 +74,19 @@ export const router = createBrowserRouter([
                 element: <DashboardSec />
               },
               {
-                path:"profile",
+                path: "profile",
                 element: <Profile />
               },
               {
-                path:"events",
+                path: "events",
                 element: <Event />
               },
               {
-                path:"parents",
+                path: "parents",
                 element: <Parent />
               },
               {
-                path:"teachers",
+                path: "teachers",
                 element: <Teacher />
               }
             ]
@@ -87,12 +98,47 @@ export const router = createBrowserRouter([
         element: <RequireAuth />, // Protect this route
         children: [
           {
-            // index: true,
             element: <MainLayout />,
             children: [
               {
                 index: true,
                 element: <DashboardTeacher />
+              },
+              {
+                path: "students",
+                element: <Students />
+              },
+              {
+                // This should be corrected to point to the user's events
+                path: "events",
+                element: <Event />
+              },
+              {
+                path: "class",
+                element: <Class />
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: "dashboard-user",
+        element: <RequireAuth />, // Protect this route
+        children: [
+          {
+            element: <MainLayout />,
+            children: [
+              {
+                index: true,
+                element: <DashboardUser />
+              },
+              {
+                path: "profile",
+                element: <Profile />
+              },
+              {
+                path: "events",
+                element: <UserEvent />
               }
             ]
           }

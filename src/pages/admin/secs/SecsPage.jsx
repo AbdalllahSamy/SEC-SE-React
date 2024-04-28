@@ -15,7 +15,7 @@ function SecsPage() {
       <h2 className=' fw-bold fs-2'>Secs</h2>
       </div>
       <div className=' ' >
-      <FormButton title="add"/>
+      <FormButton title="add" stl="add-btn"/>
       </div>
       </div>
       <div className="d-flex flex-column flex-md-row gap-3 row justify-content-between" >

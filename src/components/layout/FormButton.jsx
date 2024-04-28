@@ -26,7 +26,7 @@ function FormButton(props) {
 
   return (
     <>
-      <button type="button" className="my-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" className={props.stl} data-bs-toggle="modal" data-bs-target="#exampleModal">
         {props.title}
       </button>
 

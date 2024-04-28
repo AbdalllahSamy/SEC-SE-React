@@ -12,7 +12,7 @@ function Card(props) {
           <h5 className="card-title">{props.name}</h5>
           <p className="card-text">{props.about}</p>
           <div className='d-flex gap-2 justify-content-center'>
-          <FormButton title="Update"/> 
+          <FormButton title="Update" stl="book-btn btn"/> 
           <FormDelete title="delete"/>
           </div>
         </div>

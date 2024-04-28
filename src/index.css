@@ -370,10 +370,12 @@ img {
 	height: 32px;
 }
 .btn{
-	border-radius: 22px;
-	border: none;
-	height: 40px;
-	width: 100%;
+	border-radius: 22px !important;
+	border: none !important;
+	height: 40px !important;
+	width: 100% !important;
+    background-color: #43A047;
+    color: white !important;
 }
 .btn:focus{
 	border: none;
@@ -396,12 +398,14 @@ img {
 }
 .btn.info{
 	background: rgb(197, 3, 3);
+    color: white !important;
 }
 .btn.info span{
-	color: white!important;
+	color: white !important;
 }
 .btn.info:hover{
 	background: rgb(249, 39, 39)!important;
+    color: white!important;
 }
 .social-link {
     width: 30px;

@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from '../../components/layout/Navbar';
 import { useCheckValidation } from '../../hooks/useCheckValidation';
 
-const DashboardPage = () => {
-  useCheckValidation("SEC");
+const DashboardUser = () => {
+  useCheckValidation("USER");
     const auth = JSON.parse(localStorage.getItem('auth'));
   return (
     <>
@@ -16,4 +16,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default DashboardUser;
