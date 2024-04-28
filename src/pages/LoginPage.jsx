@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem("auth"));
+    const auth = JSON.parse(sessionStorage.getItem("auth"));
     if (auth) {
       if (auth.role === "ADMIN") {
         navigate("/dashboard-admin");
@@ -40,7 +40,8 @@ const LoginPage = () => {
   
       // Check if the response contains a valid JWT token
       if (response.data.data && response.data.data.token) {
-        localStorage.setItem("auth", JSON.stringify(response.data.data));
+        sessionStorage.setItem("auth", JSON.stringify(response.data.data));
+        console.log("saved to session");
         
         // Navigate based on user role
         switch (response.data.data.role) {

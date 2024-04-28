@@ -4,7 +4,7 @@ import { useCheckValidation } from '../../hooks/useCheckValidation';
 
 const DashboardPage = () => {
   useCheckValidation("SEC");
-    const auth = JSON.parse(localStorage.getItem('auth'));
+    const auth = JSON.parse(sessionStorage.getItem("auth"));
   return (
     <>
     <Navbar />

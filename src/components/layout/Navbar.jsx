@@ -16,9 +16,8 @@ function Navbar() {
     const profilePath = `${currentPath}/profile`;
 
     const handleLogout = (event) => {
-        event.preventDefault(); // Prevent default form submission behavior
-        // Get the token from localStorage or wherever it's stored
-        const auth = JSON.parse(localStorage.getItem('auth'));
+        event.preventDefault(); 
+        const auth = JSON.parse(sessionStorage.getItem("auth"));
         console.log(auth.token);
 
 
@@ -30,7 +29,7 @@ function Navbar() {
             withCredentials: true
         })
             .then(response => {
-                localStorage.removeItem('auth');
+                sessionStorage.removeItem('auth');
                 navigate("/");
             })
             .catch(error => {

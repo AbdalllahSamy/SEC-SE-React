@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const RequireAuth = () => {
     const navigate = useNavigate();
-    const auth = JSON.parse(localStorage.getItem('auth'));
+    const auth = JSON.parse(sessionStorage.getItem("auth"));
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {

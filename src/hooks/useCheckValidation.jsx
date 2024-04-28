@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 export const useCheckValidation = (requiredType) => {
   const location = useLocation();
   const navigateFunction = useNavigate();
-  const auth = JSON.parse(localStorage.getItem("auth"));
+  const auth = JSON.parse(sessionStorage.getItem("auth"));
   useEffect(() => {
     if (auth.role !== requiredType) {
       if (auth.role === "ADMIN") {

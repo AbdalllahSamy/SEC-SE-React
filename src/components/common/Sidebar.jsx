@@ -13,7 +13,7 @@ const Sidebar = ({ sidebarWidth }) => {
   useEffect(() => {
 
     // Retrieve user role from local storage
-    const role=JSON.parse(localStorage.getItem('auth')).role;
+    const role=JSON.parse(sessionStorage.getItem("auth")).role;
 
     // Based on the user's role, set the appropriate menu
     if (role === 'ADMIN') {

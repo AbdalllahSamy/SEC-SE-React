@@ -7,7 +7,7 @@ function Profile() {
 
     useEffect(()=>{
         setIsMounted(true); // Component has mounted
-        const auth = JSON.parse(localStorage.getItem('auth'));
+        const auth = JSON.parse(sessionStorage.getItem("auth"));
         console.log(auth.token);
 
 
