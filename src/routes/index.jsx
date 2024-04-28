@@ -9,6 +9,7 @@ import TeachersPage from "../pages/admin/teacher/TeachersPage";
 import RequireAuth from "./../components/auth/RequireAuth"
 import DashboardTeacher from "../pages/teacher/DashboardTeacher";
 import SecsPage from "../pages/admin/secs/SecsPage";
+import Profile from "../pages/Profile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
               {
                 path: "secs",
                 element: <SecsPage />
+              },
+              {
+                path:"profile",
+                element: <Profile />
               }
             ]
           }
@@ -53,6 +58,10 @@ export const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardSec />
+              },
+              {
+                path:"profile",
+                element: <Profile />
               }
             ]
           }

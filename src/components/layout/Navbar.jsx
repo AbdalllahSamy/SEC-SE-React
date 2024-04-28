@@ -6,10 +6,14 @@ import { IoChatbox, IoSend } from "react-icons/io5";
 import images from "./../../assets/images/images.png";
 import ChatBody from './chat/ChatBody';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 function Navbar() {
     const [show, setShow] = useState(false);
     const [profileVisible, setProfileVisible] = useState(false);
     const navigate = useNavigate();
+    const currentPath = window.location.pathname;
+    const profilePath = `${currentPath}/profile`;
 
     const handleLogout = (event) => {
         event.preventDefault(); // Prevent default form submission behavior
@@ -66,8 +70,8 @@ function Navbar() {
                 <img src={images} alt="" className='profile' onClick={toggleProfile} />
                 <div className="profile-info" style={{ display: profileVisible ? 'block' : 'none' }}>
                     <div className="show-profile text-uppercase">
-                        <a href=''>Show Profile</a>
-                        <hr />
+                    <Link to={profilePath}>Show Profile</Link>                       
+                     <hr />
                     </div>
                     <div className="log-out text-light text-center text-uppercase ">
                         <button onClick={handleLogout}>Logout</button>

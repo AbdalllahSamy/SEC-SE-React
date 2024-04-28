@@ -9,6 +9,8 @@ import '@fontsource/roboto/700.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import '../node_modules/bootstrap/dist/js/bootstrap'; // Import Bootstrap CSS
 import React,{useEffect, useState} from "react";
+import "react-toastify/dist/ReactToastify.css";
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip, BarElement);
 
