@@ -321,3 +321,115 @@ img {
     background-color: green;
     border: none;
 }
+
+/*events*/
+.event-header{
+    display: flex;
+    justify-content: space-between;
+}
+.add-btn{
+    border-radius: 22px;
+	border: none;
+	height: 40px;
+    width: 100px;
+    margin-top: 39px;
+    background-color: #43A047;
+    color: white;
+    transition: .3s;
+}
+.add-btn:hover{
+    background-color: rgb(7, 113, 7);
+    color: white;
+}
+.all-cards{
+    display: flex;
+    justify-content: space-between;
+}
+.event-card{
+    width: 31.33333%;
+    border: 2px solid green;
+    border-radius: 40px;
+    padding: 30px;
+}
+.event-name{
+    display: flex;
+    flex-direction: row;
+}
+.event-name .event-img{
+    width: 60px;
+    height: 60px;
+}
+.hosters{
+    margin-bottom: 50px;
+}
+.hosters img{
+    border-radius: 50%;
+	border:none;
+	margin-right: -15px;
+	width: 35px;
+	height: 32px;
+}
+.btn{
+	border-radius: 22px;
+	border: none;
+	height: 40px;
+	width: 100%;
+}
+.btn:focus{
+	border: none;
+	box-shadow: none;
+}
+.book-btn{
+    background-color: #43A047;
+    color: white;
+}
+.book-btn:hover{
+    background-color: rgb(7, 113, 7);
+    color: white;
+}
+.btn span{
+	font-size: 14px;
+	font-weight: 500;
+}
+.btn-dark span{
+	color: #E0DFE7;
+}
+.btn.info{
+	background: rgb(197, 3, 3);
+}
+.btn.info span{
+	color: white!important;
+}
+.btn.info:hover{
+	background: rgb(249, 39, 39)!important;
+}
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  
+  .social-link:hover,
+  .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .progress {
+    height: 10px;
+  }
+  .card-body{
+    transition: .4s;
+    cursor: pointer;
+  }
+  .card-body:hover{
+    transform: scale(1.1);
+  }

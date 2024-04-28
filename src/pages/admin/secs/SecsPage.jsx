@@ -16,7 +16,6 @@ function SecsPage() {
       </div>
       <div className=' ' >
       <FormButton title="add"/>
- 
       </div>
       </div>
       <div className="d-flex flex-column flex-md-row gap-3 row justify-content-between" >

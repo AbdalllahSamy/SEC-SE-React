@@ -51,6 +51,18 @@ const Sidebar = ({ sidebarWidth }) => {
           icon: <DashboardCustomizeOutlinedIcon />,
           state: "teac",
           link: "/dashboard-sec/teachers"
+        },
+        {
+          title: "Events",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "eve",
+          link: "/dashboard-sec/events"
+        },
+        {
+          title: "Parents",
+          icon: <DashboardCustomizeOutlinedIcon />,
+          state: "par",
+          link: "/dashboard-sec/parents"
         }
       ]);
     }

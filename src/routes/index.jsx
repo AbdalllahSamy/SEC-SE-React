@@ -10,6 +10,9 @@ import RequireAuth from "./../components/auth/RequireAuth"
 import DashboardTeacher from "../pages/teacher/DashboardTeacher";
 import SecsPage from "../pages/admin/secs/SecsPage";
 import Profile from "../pages/Profile";
+import Event from "../pages/sec/events/Event";
+import Parent from "../pages/sec/parents/Parent";
+import Teacher from "../pages/sec/teachers/Teacher";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +65,18 @@ export const router = createBrowserRouter([
               {
                 path:"profile",
                 element: <Profile />
+              },
+              {
+                path:"events",
+                element: <Event />
+              },
+              {
+                path:"parents",
+                element: <Parent />
+              },
+              {
+                path:"teachers",
+                element: <Teacher />
               }
             ]
           }
