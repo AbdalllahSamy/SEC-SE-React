@@ -17,6 +17,8 @@ import Students from "../pages/teacher/students/Students";
 import Class from "../pages/teacher/class/Class";
 import DashboardUser from "../pages/user/DashboardUser";
 import UserEvent from "../pages/user/userevent/UserEvent";
+import SecsProfilePage from "../pages/admin/secs/SecsProfilePage";
+import TeacherProfilePage from "../pages/admin/teacher/TeacherProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -40,11 +42,31 @@ export const router = createBrowserRouter([
               },
               {
                 path: "teachers",
-                element: <TeachersPage />
+                children: [
+                  {
+                    path: ":id", // This path captures the teacher ID
+                    element: <TeacherProfilePage />
+                  },
+                  // Add the below Route to render TeachersPage if no ID is provided
+                  {
+                    index: true,
+                    element: <TeachersPage />
+                  }
+                ]
               },
               {
                 path: "secs",
-                element: <SecsPage />
+                children: [
+                  {
+                    path: ":id", // This path captures the teacher ID
+                    element: <SecsProfilePage />
+                  },
+                  // Add the below Route to render TeachersPage if no ID is provided
+                  {
+                    index: true,
+                    element: <SecsPage />
+                  }
+                ]
               },
               {
                 path: "profile",

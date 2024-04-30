@@ -1,7 +1,34 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Navbar from '../../../components/layout/Navbar'
 import Table from '../../../components/layout/Table'
+import axios from 'axios';
 function Parent() {
+  const [par, setpar] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const auth = JSON.parse(sessionStorage.getItem("auth"));
+        const response = await axios.get('/api/admin/parents', {
+          headers: {
+            'Authorization': `Bearer ${auth.token}`
+          },
+          withCredentials: true
+        });
+        setpar(response.data);
+      } catch (error) {
+        console.error('Failed to fetch secretaries:', error);
+        setError('Failed to fetch secretaries. Please try again later.');
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      // Cleanup function
+    };
+  }, []);
   return (
     <div>
         <Navbar/>

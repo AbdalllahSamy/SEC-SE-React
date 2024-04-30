@@ -6,6 +6,7 @@ import FormButton from '../../../components/layout/FormButton';
 import Card from '../../../components/layout/Card';
 import Image from './../../../assets/images/elgayar.jpeg'
 import FormUpdate from '../../../components/layout/FormUpdate';
+import { Link } from 'react-router-dom';
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([]);
 
@@ -41,7 +42,7 @@ export default function TeachersPage() {
             <h2 className='fw-bold fs-2'>Teachers</h2>
           </div>
           <div className=''>
-            <FormButton title="Add" stl="add-btn" onTeacherAdded={handleTeacherAdded} />
+            <FormButton title="Add" stl="add-btn" type="teacher" onTeacherAdded={handleTeacherAdded} />
           </div>
         </div>
         <div className="d-flex flex-column flex-md-row gap-3 row justify-content-around">
@@ -57,8 +58,10 @@ export default function TeachersPage() {
               address={teacher.address}
               email={teacher.email}
               password={teacher.password}
+              type='teacher'
               className="col-md-4 col-12"
-            />
+              />
+           
           ))}
         </div>
       </div>
