@@ -9,8 +9,11 @@ function Card(props) {
       <div className="card" style={{ width: "18rem" }}>
         <img src={props.img} className="card-img-top" alt="..."  />
         <div className="card-body">
-          <h5 className="card-title">{props.name}</h5>
-          <p className="card-text">{props.about}</p>
+          <h5 className="card-title text-capitalize">{props.name}</h5>
+          <p className="card-text fs-5 mb-0">{props.level}</p>
+          <p className="card-text mb-0">{props.bio}</p>
+          <p className="card-text mb-0">{props.subject}</p>
+          <p className="card-text">{props.address}</p>
           <div className='d-flex gap-2 justify-content-center'>
           <FormButton title="Update" stl="book-btn btn"/> 
           <FormDelete title="delete"/>

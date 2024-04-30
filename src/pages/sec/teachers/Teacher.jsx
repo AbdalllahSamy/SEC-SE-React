@@ -5,10 +5,13 @@ import t3 from './../../../assets/images/t-3.webp'
 import t4 from './../../../assets/images/t4.jpg'
 import FormButton from '../../../components/layout/FormButton'
 import FormDelete from '../../../components/layout/FormDelete'
+import Navbar from '../../../components/layout/Navbar'
 function Teacher() {
+  
   return (
     <div>
-        <div className="event-header">
+      <Navbar />
+      <div className="event-header mt-3">
         <h1>Teachers</h1>
         <FormButton title="add" stl="add-btn" />
         </div>
@@ -19,7 +22,7 @@ function Teacher() {
       <div className="card shadow-sm border-0 rounded">
         <div className="card-body p-0"><img src={t1} alt="" className="w-100 card-img-top"/>
           <div className="p-4">
-            <h5 className="mb-0">Mark Rockwell</h5>
+            <h5 className="mb-3">Mark Rockwell</h5>
             <div className='d-flex flex-column gap-2'>
                 <FormButton title="Update" stl="book-btn btn"/> 
                 <FormDelete title="delete"/>
@@ -33,7 +36,7 @@ function Teacher() {
       <div className="card shadow-sm border-0 rounded">
         <div className="card-body p-0"><img src={t2} alt="" className="w-100 card-img-top"/>
           <div className="p-4">
-            <h5 className="mb-0">Mark Rockwell</h5>
+            <h5 className="mb-3">Mark Rockwell</h5>
             <div className='d-flex flex-column gap-2'>
                 <FormButton title="Update" stl="book-btn btn"/> 
                 <FormDelete title="delete"/>
@@ -47,7 +50,7 @@ function Teacher() {
       <div className="card shadow-sm border-0 rounded">
         <div className="card-body p-0"><img src={t3} alt="" className="w-100 card-img-top"/>
           <div className="p-4">
-            <h5 className="mb-0">Mark Rockwell</h5>
+            <h5 className="mb-3">Mark Rockwell</h5>
             <div className='d-flex flex-column gap-2'>
                 <FormButton title="Update" stl="book-btn btn"/> 
                 <FormDelete title="delete"/>
@@ -61,7 +64,7 @@ function Teacher() {
       <div className="card shadow-sm border-0 rounded">
         <div className="card-body p-0"><img src={t4} alt="" className="w-100  card-img-top"/>
           <div className="p-4">
-            <h5 className="mb-0">Deby Mosa</h5>
+            <h5 className="mb-3">Deby Mosa</h5>
             <div className='d-flex flex-column gap-2'>
                 <FormButton title="Update" stl="book-btn btn"/> 
                 <FormDelete title="delete"/>
@@ -73,12 +76,12 @@ function Teacher() {
   </div>
 
 
-  
 
 
 
-  
-        </div>
+
+
+      </div>
     </div>
   )
 }

@@ -1,27 +1,50 @@
+import { Password } from '@mui/icons-material';
+import axios from 'axios';
 import React, { useState } from 'react';
 
 function FormButton(props) {
-  const [formData, setFormData] = useState({
+  const [values, setValues] = useState({
     // Define initial state for your form data
     // For example:
-    name: '',
-    email: '',
-    img:'',
+    firstName: '',
+    lastName:'',
+    level:'',
+    bio: '',
+    subject:'',
+    address:'',
+    email:'',
+    password:''
     // etc.
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  
 
-  const handleSubmit = () => {
-    // Handle form submission here
-    // You can access form data from the 'formData' state
-    // For example:
-    // console.log(formData);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+      if (props.title=='add') {
+      const fetchData = async () => {
+        try {
+          const auth = JSON.parse(sessionStorage.getItem("auth"));
+          const response = await axios.post('/api/admin/teacher', values,{
+            headers: {
+              'Authorization': `Bearer ${auth.token}`
+            },
+            withCredentials: true
+          });
+          console.log(response);;
+        } catch (error) {
+          console.error('Failed to fetch teachers:', error);
+        }
+      };
+
+      fetchData();
+      }else if(props.title=='Update'){
+
+      }
+
+      
+
+
   };
 
   return (
@@ -30,7 +53,7 @@ function FormButton(props) {
         {props.title}
       </button>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div onSubmit={handleSubmit} className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -40,12 +63,22 @@ function FormButton(props) {
             <div className="modal-body">
               {/* Add your input fields here */}
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">Name</label>
-                <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} />
-                <label htmlFor="name" className="form-label">About</label>
-                <input type="text" className="form-control" id="name" name="name" value={formData.about} onChange={handleChange} />
-                <label htmlFor="img" className="form-label">Img</label>
-                <input type="file" className="form-control" id="img" name="img" value={formData.img} onChange={handleChange} />
+                <label htmlFor="name" className="form-label">firstName</label>
+                <input type="text" className="form-control" id="name" name="name"  onChange={e=> setValues({...values, firstName: e.target.value })} />
+                <label htmlFor="name" className="form-label">lastName</label>
+                <input type="text" className="form-control" id="name" name="name"  onChange={e=> setValues({...values, lastName: e.target.value })} />
+                <label htmlFor="name" className="form-label">Level</label>
+                <input type="text" className="form-control" id="name" name="name"  onChange={e=> setValues({...values, level: e.target.value })} />
+                <label htmlFor="img" className="form-label">bio</label>
+                <input type="text" className="form-control" id="img" name="img"  onChange={e=> setValues({...values, bio: e.target.value })} />
+                <label htmlFor="img" className="form-label">subject</label>
+                <input type="text" className="form-control" id="img" name="img"  onChange={e=> setValues({...values, subject: e.target.value })} />
+                <label htmlFor="img" className="form-label">address</label>
+                <input type="text" className="form-control" id="img" name="img"  onChange={e=> setValues({...values, address: e.target.value })} />
+                <label htmlFor="img" className="form-label">UserName</label>
+                <input type="text" className="form-control" id="img" name="img"  onChange={e=> setValues({...values, email: e.target.value })} />
+                <label htmlFor="img" className="form-label">Password</label>
+                <input type="text" className="form-control" id="img" name="img"  onChange={e=> setValues({...values, password: e.target.value })} />
               </div>
               {/* Add more input fields as needed */}
             </div>

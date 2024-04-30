@@ -10,7 +10,7 @@
     <table className="table table-responsive table-borderless">
         {children}
       
-</table>
+    </table>
   
   </div>
     
