@@ -27,8 +27,8 @@ function Card(props) {
           <p className="card-text">{props.address}</p>
           <div className='d-flex gap-2 justify-content-center'>
             {/* Pass the ID to FormUpdate */}
-            <FormUpdate id={id} className='my-btn' />
-            <FormDelete title="delete" id={id}/>
+            <FormUpdate id={id} className='my-btn' type={props.type} />
+            <FormDelete title="delete" id={id} type={props.type}/>
             {/* Use the determined profilePath */}
             <Link to={profilePath} className='btn btn-success' >visit</Link>
           </div>

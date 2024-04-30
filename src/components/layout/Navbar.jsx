@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
 import { IoChatbox, IoSend } from "react-icons/io5";
 import images from "./../../assets/images/images.png";
 import ChatBody from './chat/ChatBody';
+import PersonsChat from './chat/PersonsChat';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [show, setShow] = useState(false);
+    const [showChatBody, setShowChatBody] = useState(false);
+    const [personeData, setPersoneData] = useState([]);
     const [profileVisible, setProfileVisible] = useState(false);
     const navigate = useNavigate();
-    const currentPath = window.location.pathname;
-    const profilePath = `${currentPath}/profile`;
+    const authRole = JSON.parse(sessionStorage.getItem("auth")).role;
+    let profilePath = '';
+    if (authRole === "ADMIN") {
+        profilePath = `/dashboard-admin/profile`;
+    }else if(authRole === 'SEC'){
+        profilePath = `/dashboard-sec/profile`
+    }else if(authRole === 'TEACHER'){
+        profilePath =`dashboard-teacher/profile`
+    }else if(authRole === 'USER'){
+        profilePath =`dashboard-user/profile`
+    }
+
 
     const handleLogout = (event) => {
         event.preventDefault(); 
         const auth = JSON.parse(sessionStorage.getItem("auth"));
-        console.log(auth.token);
 
 
         // Make a POST request to the logout endpoint
@@ -37,6 +49,13 @@ function Navbar() {
                 console.log(error);
             });
 
+    };
+    const handlePersonChatClick = (data) => {
+        setPersoneData(data);
+        setShowChatBody(true);
+    };
+    const handleChatBodyBackClick = () => {
+        setShowChatBody(false);
     };
 
     const toggleChat = () => {
@@ -77,7 +96,9 @@ function Navbar() {
                     </div>
                 </div>
             </div>
-            {show && <ChatBody />}
+            {
+                show && (showChatBody ? <ChatBody onBackClick={handleChatBodyBackClick} data={personeData} /> : <PersonsChat onPersonChatClick={handlePersonChatClick} />) 
+            }
         </div>
     );
 }

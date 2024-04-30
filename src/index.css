@@ -430,3 +430,19 @@ img {
   .progress {
     height: 10px;
   }
+  .persons-header{
+    background-color: green;
+    height: 60px;
+  }
+  .persons-chat{
+    background-color:white;
+    padding: 10px;
+    cursor: pointer;
+  }
+.btn-request{
+    background-color: green;
+    color: white;
+    border: none;
+    padding-block: 17px;
+    border-radius: 20px;
+}

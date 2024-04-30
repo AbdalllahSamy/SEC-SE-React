@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function FormUpdate({ id }) {
-  const [formData, setFormData] = useState({
+function FormUpdate({ id, type }) {
+  const initialFormValues = type === "sec" ? {
+    id: id,
+    firstName: '',
+    lastName: '',
+    bio: '',
+    country: '',
+    address: '',
+    email: '',
+    password: '',
+    role: 'SEC'
+  } : {
     id: id,
     firstName: '',
     lastName: '',
     level: '',
     bio: '',
-    subjects: '',
+    subject: '', 
     address: '',
     email: '',
-    password: ''
-  });
+    password: '',
+    role: 'TEACHER'
+  };
+  const [values, setValues] = useState(initialFormValues);
   const [showModal, setShowModal] = useState(false);
   const [updateSuccess, setUpdateSuccess] = useState(false);
+
   
   useEffect(() => {
     if (updateSuccess) {
@@ -33,7 +46,7 @@ function FormUpdate({ id }) {
         withCredentials: true
       });
       const { data } = response;
-      setFormData(data);
+      setValues(data);
       console.log('Updated data fetched:', data);
     } catch (error) {
       console.error('Failed to fetch teacher data:', error);
@@ -44,7 +57,13 @@ function FormUpdate({ id }) {
     event.preventDefault();
     try {
       const auth = JSON.parse(sessionStorage.getItem("auth"));
-      const response = await axios.put(`/api/admin/teacher`, formData, {
+      let endpoint ='';
+      if (type === "teacher") {
+        endpoint = '/api/admin/teacher';
+      } else if (type === "sec") {
+        endpoint = '/api/admin/secretary';
+      }
+      const response = await axios.put(endpoint, values, {
         headers: {
           'Authorization': `Bearer ${auth.token}`
         },
@@ -62,7 +81,7 @@ function FormUpdate({ id }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setValues(prevState => ({
       ...prevState,
       [name]: value
     }));
@@ -79,28 +98,38 @@ function FormUpdate({ id }) {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="modal-title fs-5">Update Teacher</h1>
+                <h1 className="modal-title fs-5">Modal title</h1>
                 <button type="button" className="btn-close my-btn" onClick={() => setShowModal(false)} aria-label="Close"></button>
               </div>
               <div className="modal-body">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                  <label htmlFor="firstName" className="form-label">First Name</label>
-                    <input type="text" className="form-control" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} />
+                    <label htmlFor="firstName" className="form-label">First Name</label>
+                    <input type="text" className="form-control" id="firstName" name="firstName" value={values.firstName} onChange={e => setValues({ ...values, firstName: e.target.value })} />
                     <label htmlFor="lastName" className="form-label">Last Name</label>
-                    <input type="text" className="form-control" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} />
-                    <label htmlFor="level" className="form-label">Level</label>
-                    <input type="text" className="form-control" id="level" name="level" value={formData.level} onChange={handleChange} />
+                    <input type="text" className="form-control" id="lastName" name="lastName" value={values.lastName} onChange={e => setValues({ ...values, lastName: e.target.value })} />
                     <label htmlFor="bio" className="form-label">Bio</label>
-                    <input type="text" className="form-control" id="bio" name="bio" value={formData.bio} onChange={handleChange} />
-                    <label htmlFor="subjects" className="form-label">Subjects</label>
-                    <input type="text" className="form-control" id="subjects" name="subjects" value={formData.subjects} onChange={handleChange} />
-                    <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} />
+                    <input type="text" className="form-control" id="bio" name="bio" value={values.bio} onChange={e => setValues({ ...values, bio: e.target.value })} />
+                    {type === 'teacher' && (
+                      <>
+                        <label htmlFor="subject" className="form-label">Subject</label>
+                        <input type="text" className="form-control" id="subject" name="subject" value={values.subject} onChange={e => setValues({ ...values, subject: e.target.value })} />
+                        <label htmlFor="level" className="form-label">Level</label>
+                        <input type="text" className="form-control" id="level" name="level" value={values.level} onChange={e => setValues({ ...values, level: e.target.value })} />
+                      </>
+                    )}
+                    {type === 'sec' && (
+                      <>
+                        <label htmlFor="country" className="form-label">Country</label>
+                        <input type="text" className="form-control" id="country" name="country" value={values.country} onChange={e => setValues({ ...values, country: e.target.value })} />
+                        <label htmlFor="address" className="form-label">Address</label>
+                        <input type="text" className="form-control" id="address" name="address" value={values.address} onChange={e => setValues({ ...values, address: e.target.value })} />
+                      </>
+                    )}
                     <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} />
+                    <input type="email" className="form-control" id="email" name="email" value={values.email} onChange={e => setValues({ ...values, email: e.target.value })} />
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} />
+                    <input type="password" className="form-control" id="password" name="password" value={values.password} onChange={e => setValues({ ...values, password: e.target.value })} />
                   </div>
                 </form>
               </div>

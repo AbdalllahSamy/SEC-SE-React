@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function FormDelete({ id, onDelete }) {
+function FormDelete({ id, onDelete, type }) {
   const [showModal, setShowModal] = useState(false);
-
+  
   const handleDelete = async () => {
     try {
       const auth = JSON.parse(sessionStorage.getItem("auth"));
-      await axios.delete(`/api/admin/teacher/${id}`, {
+      let endpoint = ``;
+      if (type == "teacher") {
+        endpoint = `/api/admin/teacher/${id}`;
+      } else if (type == "sec") {
+        endpoint = `/api/admin/secretary/${id}`;
+      }
+      await axios.delete(endpoint, {
         headers: {
           'Authorization': `Bearer ${auth.token}`
         },

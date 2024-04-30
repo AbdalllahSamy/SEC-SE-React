@@ -138,6 +138,10 @@ export const router = createBrowserRouter([
               {
                 path: "class",
                 element: <Class />
+              },
+              {
+                path:"profile",
+                element:<Profile/>
               }
             ]
           }
