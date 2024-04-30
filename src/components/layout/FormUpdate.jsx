@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function FormButton({ title, stl, onTeacherAdded }) {
+function FormUpdate({ title, stl, onTeacherAdded }) {
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
@@ -51,7 +51,7 @@ function FormButton({ title, stl, onTeacherAdded }) {
   return (
     <>
       <button type="button" className={stl} onClick={() => setShowModal(true)}>
-        {title}
+       Update
       </button>
 
       {showModal && (
@@ -96,4 +96,4 @@ function FormButton({ title, stl, onTeacherAdded }) {
   );
 }
 
-export default FormButton;
+export default FormUpdate;

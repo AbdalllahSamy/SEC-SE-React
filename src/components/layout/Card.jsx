@@ -2,6 +2,7 @@ import React from 'react';
 import Buttonn from './Buttonn';
 import FormButton from './FormButton';
 import FormDelete from './FormDelete';
+import FormUpdate from './FormUpdate';
 function Card(props) {
   return (
     <>
@@ -15,7 +16,7 @@ function Card(props) {
           <p className="card-text mb-0">{props.subject}</p>
           <p className="card-text">{props.address}</p>
           <div className='d-flex gap-2 justify-content-center'>
-          <FormButton title="Update" stl="book-btn btn"/> 
+          <FormUpdate/>
           <FormDelete title="delete"/>
           </div>
         </div>

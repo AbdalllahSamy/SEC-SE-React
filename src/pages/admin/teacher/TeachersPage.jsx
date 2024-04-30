@@ -1,37 +1,36 @@
+// TeachersPage.js
 import React, { useEffect, useState } from 'react';
-import Card from '../../../components/layout/Card';
-import Image from './../../../assets/images/elgayar.jpeg';
-import Image2 from './../../../assets/images/WhatsApp Image 2024-04-28 at 01.02.05_8ccb2f23.jpg';
-import Navbar from '../../../components/layout/Navbar';
-import Buttonn from '../../../components/layout/Buttonn';
-import FormButton from '../../../components/layout/FormButton';
 import axios from 'axios';
-
+import Navbar from '../../../components/layout/Navbar';
+import FormButton from '../../../components/layout/FormButton';
+import Card from '../../../components/layout/Card';
+import Image from './../../../assets/images/elgayar.jpeg'
+import FormUpdate from '../../../components/layout/FormUpdate';
 export default function TeachersPage() {
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const auth = JSON.parse(sessionStorage.getItem("auth"));
-        const response = await axios.get('/api/admin/teacher', {
-          headers: {
-            'Authorization': `Bearer ${auth.token}`
-          },
-          withCredentials: true
-        });
-        setTeachers(response.data);
-      } catch (error) {
-        console.error('Failed to fetch teachers:', error);
-      }
-    };
-
     fetchData();
-
-    return () => {
-      // Cleanup function
-    };
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const auth = JSON.parse(sessionStorage.getItem("auth"));
+      const response = await axios.get('/api/admin/teacher', {
+        headers: {
+          'Authorization': `Bearer ${auth.token}`
+        },
+        withCredentials: true
+      });
+      setTeachers(response.data);
+    } catch (error) {
+      console.error('Failed to fetch teachers:', error);
+    }
+  };
+
+  const handleTeacherAdded = (newTeacher) => {
+    setTeachers([...teachers, newTeacher]); // Add the new teacher to the list
+  };
 
   return (
     <>
@@ -42,21 +41,21 @@ export default function TeachersPage() {
             <h2 className='fw-bold fs-2'>Teachers</h2>
           </div>
           <div className=''>
-            <FormButton title="add" stl="add-btn" />
+            <FormButton title="Add" stl="add-btn" onTeacherAdded={handleTeacherAdded} />
           </div>
         </div>
         <div className="d-flex flex-column flex-md-row gap-3 row justify-content-around">
           {teachers.map((teacher, index) => (
             <Card
-              key={index} // Assuming the index is unique, but ideally, you should use a unique identifier from your data
-              img={Image} // Assuming you want to use the same image for all teachers
+              key={index}
+              img = {Image}
               name={`${teacher.firstName} ${teacher.lastName}`}
               level={teacher.level}
               bio={teacher.bio}
               subject={teacher.subjects}
               address={teacher.address}
-              email = {teacher.email}
-              password = {teacher.password}
+              email={teacher.email}
+              password={teacher.password}
               className="col-md-4 col-12"
             />
           ))}
