@@ -1,29 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function FormDelete(props) {
+function FormDelete({ id, onDelete }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDelete = async () => {
+    try {
+      const auth = JSON.parse(sessionStorage.getItem("auth"));
+      await axios.delete(`/api/admin/teacher/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${auth.token}`
+        },
+        withCredentials: true
+      });
+      onDelete(id); // Notify parent component that the card has been deleted
+      setShowModal(false); // Hide the modal after successful deletion
+    } catch (error) {
+      console.error('Failed to delete teacher:', error);
+    }
+  };
+
   return (
     <>
-      <button type="button" className=" my-btn info bg-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-        {props.title}
+      <button type="button" className="my-btn info bg-danger" onClick={() => setShowModal(true)}>
+        Delete
       </button>
 
-      <div className="modal fade" id="deleteModal" tabIndex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="deleteModalLabel">Delete Confirmation</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              Are you sure you want to delete?
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-danger">Delete</button>
+      {showModal && (
+        <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block', backgroundColor: '#00000085'}}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5">Delete Confirmation</h1>
+                <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                Are you sure you want to delete?
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
+                <button type="button" className="btn btn-danger" onClick={() => { handleDelete(); setShowModal(false); }}>Delete</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

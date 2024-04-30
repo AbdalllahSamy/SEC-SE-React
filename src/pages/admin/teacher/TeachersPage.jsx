@@ -47,7 +47,8 @@ export default function TeachersPage() {
         <div className="d-flex flex-column flex-md-row gap-3 row justify-content-around">
           {teachers.map((teacher, index) => (
             <Card
-              key={index}
+              key={teacher.id}
+              id={teacher.id}
               img = {Image}
               name={`${teacher.firstName} ${teacher.lastName}`}
               level={teacher.level}

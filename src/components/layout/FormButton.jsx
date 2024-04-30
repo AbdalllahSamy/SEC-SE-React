@@ -7,11 +7,11 @@ function FormButton({ title, stl, onTeacherAdded }) {
     lastName: '',
     level: '',
     bio: '',
-    subject: '',
+    subjects: '',
     address: '',
     email: '',
     password: ''
-  });
+  }); 
 
   const [showModal, setShowModal] = useState(false); // State to manage modal visibility
 
@@ -35,7 +35,7 @@ function FormButton({ title, stl, onTeacherAdded }) {
           lastName: '',
           level: '',
           bio: '',
-          subject: '',
+          subjects: '',
           address: '',
           email: '',
           password: ''
@@ -73,8 +73,8 @@ function FormButton({ title, stl, onTeacherAdded }) {
                     <input type="text" className="form-control" id="name" name="name" onChange={e => setValues({ ...values, level: e.target.value })} />
                     <label htmlFor="img" className="form-label">bio</label>
                     <input type="text" className="form-control" id="img" name="img" onChange={e => setValues({ ...values, bio: e.target.value })} />
-                    <label htmlFor="img" className="form-label">subject</label>
-                    <input type="text" className="form-control" id="img" name="img" onChange={e => setValues({ ...values, subject: e.target.value })} />
+                    <label htmlFor="img" className="form-label">subjects</label>
+                    <input type="text" className="form-control" id="img" name="img" onChange={e => setValues({ ...values, subjects: e.target.value })} />
                     <label htmlFor="img" className="form-label">address</label>
                     <input type="text" className="form-control" id="img" name="img" onChange={e => setValues({ ...values, address: e.target.value })} />
                     <label htmlFor="img" className="form-label">UserName</label>
