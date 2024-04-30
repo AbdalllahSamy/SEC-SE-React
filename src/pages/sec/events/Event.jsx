@@ -20,8 +20,8 @@ function Event() {
       </div>
       </div>
      
-      <div className="all-cards row">
-            <div className="event-card">
+      <div className="all-cards row flex-column align-items-center gap-5">
+            <div className="event-card w-75">
                 <div className="event-name">
                     <img src={E3} alt="" className='event-img'/>
                     <p className='fs-3 ms-3'>name</p>
@@ -35,12 +35,12 @@ function Event() {
                     <img src={Image} alt="" />
                     <img src={E4} alt="" />
                 </div>
-                <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
+                <div className='d-flex  gap-2 justify-content-center'>
+                <FormButton title="Update" stl="  my-btn "/> 
                 <FormDelete title="delete"/>
                 </div>
             </div>
-            <div className="event-card">
+            <div className="event-card w-75">
             <div className="event-name">
                     <img src={E3} alt="" className='event-img'/>
                     <p className='fs-3 ms-3'>name</p>
@@ -54,12 +54,12 @@ function Event() {
                     <img src={Image} alt="" />
                     <img src={E4} alt="" />
                 </div>
-                <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
+                <div className='d-flex  gap-2 justify-content-center'>
+                <FormButton title="Update" stl="  my-btn "/> 
                 <FormDelete title="delete"/>
                 </div>
             </div>
-            <div className="event-card">
+            <div className="event-card w-75">
             <div className="event-name">
                     <img src={E3} alt="" className='event-img'/>
                     <p className='fs-3 ms-3'>name</p>
@@ -73,8 +73,8 @@ function Event() {
                     <img src={Image} alt="" />
                     <img src={E4} alt="" />
                 </div>
-                <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
+                <div className='d-flex  gap-2 justify-content-center'>
+                <FormButton title="Update" stl="  my-btn "/> 
                 <FormDelete title="delete"/>
                 </div>
             </div>
