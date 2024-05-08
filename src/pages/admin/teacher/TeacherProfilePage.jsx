@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom'; // Import useParams hook
+import image from './../../../assets/images/elgayar.jpeg'
 
 function TeacherProfilePage() {
   const { id } = useParams(); // Use useParams hook to get the id parameter from the URL
@@ -45,14 +46,64 @@ function TeacherProfilePage() {
   }
 
   return (
-    <div className=' bg-white border-success border w-75 p-3 rounded-5'>
-      <h2>{`${teacher.firstName} ${teacher.lastName}`}</h2>
-      <p className=' text-black-50' >Level: {teacher.level}</p>
-      <p className=' text-black-50' >Bio: {teacher.bio}</p>
-      <p className=' text-black-50' >Subject: {teacher.subjects}</p>
-      <p className=' text-black-50' >Address: {teacher.address}</p>
-      <p className=' text-black-50' >Email: {teacher.email}</p>
+  
+
+
+<div>
+  <div class="container">
+    <div class="row ">
+      <div class="col-12 col-lg-10 col-xl-8 ">
+        <h2 class="h3 mb-4 page-title">Your Profile</h2>
+        <div class="my-4">
+          <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profile</a>
+            </li>
+          </ul>
+          <form>
+            <div class="row mt-5">
+              <div class="col-md-3  mb-5">
+                <div class="avatar avatar-xl">
+                  
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="">
+                  <div class="avatar avatar-xl">
+                         <img src={image} alt=""  className='rounded-circle'/>
+                        </div>
+                    <h2>{`${teacher.firstName} ${teacher.lastName}`}</h2>
+                  </div>
+                </div>
+                <div class="row mb-4 d-flex flex-column">
+                  <div class="col-10">
+                    <p class="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus in, congue lectus. In hac habitasse platea dictumst. Cras urna quam, malesuada vitae risus at,
+                      pretium blandit sapien.
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p className=' text-black-50' >Level: {teacher.level}</p>
+                    <p className=' text-black-50' >Bio: {teacher.bio}</p>
+                    <p className=' text-black-50' >Subject: {teacher.subjects}</p>
+                    <p className=' text-black-50' >Address: {teacher.address}</p>
+                    <p className=' text-black-50' >country: {teacher.country}</p>
+                    <p className=' text-black-50' >Email: {teacher.email}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form> 
+          <hr class="my-4" />
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
   );
 }
 

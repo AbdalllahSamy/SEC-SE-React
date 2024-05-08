@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { MdEdit } from "react-icons/md";
 
 function FormUpdate({ id, type }) {
   const initialFormValues = type === "sec" ? {
@@ -89,9 +90,7 @@ function FormUpdate({ id, type }) {
 
   return (
     <>
-      <button type="button" className="my-btn" onClick={() => setShowModal(true)}>
-        Update
-      </button>
+      <button type="button" className="my-btn btn" onClick={() => setShowModal(true)}> <MdEdit /> </button>
 
       {showModal && (
         <div className="modal fade show" tabIndex="-1" role="dialog" style={{ display: 'block', backgroundColor: '#00000085'}}>

@@ -81,10 +81,11 @@ const LoginPage = () => {
         position: "absolute",
         right: 0,
         height: "100%",
-        width: "70%",
+        width: "60%",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        top:2,
         backgroundImage: `url(${images.loginBg})`
       }} />
       {/* background box */}
@@ -110,7 +111,7 @@ const LoginPage = () => {
           {/* logo */}
           <Box sx={{ textAlign: "center", p: 5 }}>
             <Animate type="fade" delay={0.5}>
-              <img src={images.logo} alt="logo" height={60}></img>
+            <h1 className=' fw-bold'><span className=''>Kinder</span><span className=' text-success'>garten</span></h1>
             </Animate>
           </Box>
           {/* logo */}

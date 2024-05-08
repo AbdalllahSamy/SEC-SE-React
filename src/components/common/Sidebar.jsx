@@ -19,13 +19,6 @@ const Sidebar = ({ sidebarWidth }) => {
     if (role === 'ADMIN') {
       setMenus([
         {
-          title: "Home",
-          icon: <MailOutlinedIcon />,
-          state: "inbox",
-          link: "/dashboard-admin",
-        
-        },
-        {
           title: "Teachers",
           icon: <DashboardCustomizeOutlinedIcon />,
           state: "teac",
@@ -145,7 +138,7 @@ const Sidebar = ({ sidebarWidth }) => {
       {/* logo */}
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <Animate type="fade" delay={1}>
-          <img src={images.logo} alt="logo" height={60} />
+         <h1 className=' fw-bold'><span className=''>Kinder</span><span className=' text-success'>garten</span></h1>
         </Animate>
       </Box>
       {/* logo */}

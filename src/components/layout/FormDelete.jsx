@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { MdDelete } from "react-icons/md";
+
 import axios from 'axios';
 
 function FormDelete({ id, onDelete, type }) {
@@ -28,8 +30,8 @@ function FormDelete({ id, onDelete, type }) {
 
   return (
     <>
-      <button type="button" className="my-btn info bg-danger" onClick={() => setShowModal(true)}>
-        Delete
+      <button type="button" className="my-btn info bg-danger btn" onClick={() => setShowModal(true)}>
+      <MdDelete />
       </button>
 
       {showModal && (

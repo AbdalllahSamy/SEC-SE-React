@@ -42,7 +42,7 @@ export default function TeachersPage() {
             <h2 className='fw-bold fs-2'>Teachers</h2>
           </div>
           <div className=''>
-            <FormButton title="Add" stl="add-btn" type="teacher" onTeacherAdded={handleTeacherAdded} />
+            <FormButton stl="add-btn" type="teacher" onTeacherAdded={handleTeacherAdded} />
           </div>
         </div>
         <div className="d-flex flex-column flex-md-row gap-3 row justify-content-around">

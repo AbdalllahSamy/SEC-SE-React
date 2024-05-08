@@ -1,89 +1,70 @@
-import React from 'react'
-import t1 from './../../../assets/images/t-1.jpg'
-import t2 from './../../../assets/images/t-2.webp'
-import t3 from './../../../assets/images/t-3.webp'
-import t4 from './../../../assets/images/t4.jpg'
-import FormButton from '../../../components/layout/FormButton'
-import FormDelete from '../../../components/layout/FormDelete'
-import Navbar from '../../../components/layout/Navbar'
-function Teacher() {
-  
+// TeachersPage.js
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Navbar from '../../../components/layout/Navbar';
+import FormButton from '../../../components/layout/FormButton';
+import Card from '../../../components/layout/Card';
+import Image from './../../../assets/images/elgayar.jpeg'
+import FormUpdate from '../../../components/layout/FormUpdate';
+import { Link } from 'react-router-dom';
+export default function TeachersPage() {
+  const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const auth = JSON.parse(sessionStorage.getItem("auth"));
+      const response = await axios.get('/api/admin/teacher', {
+        headers: {
+          'Authorization': `Bearer ${auth.token}`
+        },
+        withCredentials: true
+      });
+      setTeachers(response.data);
+    } catch (error) {
+      console.error('Failed to fetch teachers:', error);
+    }
+  };
+
+  const handleTeacherAdded = (newTeacher) => {
+    setTeachers([...teachers, newTeacher]); // Add the new teacher to the list
+  };
+
   return (
-    <div>
+    <>
       <Navbar />
-      <div className="event-header mt-3">
-        <h1>Teachers</h1>
-        <FormButton title="add" stl="add-btn" />
-        </div>
-      
-        <div className="container py-5">  
-  <div className="row pb-5 mb-4">
-    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      <div className="card shadow-sm border-0 rounded">
-        <div className="card-body p-0"><img src={t1} alt="" className="w-100 card-img-top"/>
-          <div className="p-4">
-            <h5 className="mb-3">Mark Rockwell</h5>
-            <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
-                <FormDelete title="delete"/>
-                </div>
+      <div className='container py-5'>
+        <div className='d-flex justify-content-between py-3'>
+          <div className=''>
+            <h2 className='fw-bold fs-2'>Teachers</h2>
+          </div>
+          <div className=''>
+            <FormButton stl="add-btn" type="teacher" onTeacherAdded={handleTeacherAdded} />
           </div>
         </div>
-      </div>
-    </div>
-
-    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      <div className="card shadow-sm border-0 rounded">
-        <div className="card-body p-0"><img src={t2} alt="" className="w-100 card-img-top"/>
-          <div className="p-4">
-            <h5 className="mb-3">Mark Rockwell</h5>
-            <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
-                <FormDelete title="delete"/>
-                </div>
-          </div>
+        <div className="d-flex flex-column flex-md-row gap-3 row justify-content-around">
+          {teachers.map((teacher, index) => (
+            <Card
+              key={teacher.id}
+              id={teacher.id}
+              img = {Image}
+              name={`${teacher.firstName} ${teacher.lastName}`}
+              level={teacher.level}
+              bio={teacher.bio}
+              subject={teacher.subjects}
+              address={teacher.address}
+              email={teacher.email}
+              password={teacher.password}
+              type='teacher'
+              className="col-md-4 col-12"
+              />
+           
+          ))}
         </div>
       </div>
-    </div>
-
-    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      <div className="card shadow-sm border-0 rounded">
-        <div className="card-body p-0"><img src={t3} alt="" className="w-100 card-img-top"/>
-          <div className="p-4">
-            <h5 className="mb-3">Mark Rockwell</h5>
-            <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
-                <FormDelete title="delete"/>
-                </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-      <div className="card shadow-sm border-0 rounded">
-        <div className="card-body p-0"><img src={t4} alt="" className="w-100  card-img-top"/>
-          <div className="p-4">
-            <h5 className="mb-3">Deby Mosa</h5>
-            <div className='d-flex flex-column gap-2'>
-                <FormButton title="Update" stl="book-btn btn"/> 
-                <FormDelete title="delete"/>
-                </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-
-      </div>
-    </div>
-  )
+    </>
+  );
 }
-
-export default Teacher
